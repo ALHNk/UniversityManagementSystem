@@ -26,11 +26,13 @@ public class SecurityConfig{
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers(HttpMethod.POST, "/admin/**").permitAll()
-//                        .requestMatchers(HttpMethod.PUT, "/admin/update/**").permitAll()
-//                        .requestMatchers("/auth/**").permitAll()
-//                        .requestMatchers(HttpMethod.POST, "/auth/register", "/auth/login").permitAll()
-                .anyRequest().permitAll()   )
+                        .requestMatchers(HttpMethod.POST, "/admin/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/admin/update/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/auth/register", "/auth/login").permitAll()
+                        .requestMatchers("/auth/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/auth/**").authenticated()
+
+                .anyRequest().permitAll())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

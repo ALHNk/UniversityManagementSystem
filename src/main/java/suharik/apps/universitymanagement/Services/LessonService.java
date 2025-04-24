@@ -79,11 +79,13 @@ public class LessonService {
         Student student = (Student)userRepository.findById(studentId).orElseThrow(EntityNotFoundException::new);
         Lesson lesson = lessonRepository.findById(lessonId).orElse(null);
         student.addLesson(lesson);
+        userRepository.save(student);
     }
     public void deleteLessonForStudent(int lessonId, int studentId)
     {
         Student student = (Student)userRepository.findById(studentId).orElseThrow(EntityNotFoundException::new);
         Lesson lesson = lessonRepository.findById(lessonId).orElse(null);
         student.removeLesson(lesson);
+        userRepository.save(student);
     }
 }

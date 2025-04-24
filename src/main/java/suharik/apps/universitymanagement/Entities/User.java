@@ -1,5 +1,6 @@
 package suharik.apps.universitymanagement.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +23,7 @@ public class User implements UserDetails {
     @Column(nullable = false, unique = true, name = "email")
     private String email;
 
+    @JsonIgnore
     @Column(nullable = false, name = "password")
     private String password;
 

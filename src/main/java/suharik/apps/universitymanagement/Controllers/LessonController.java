@@ -2,9 +2,12 @@ package suharik.apps.universitymanagement.Controllers;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import suharik.apps.universitymanagement.DTOs.LessonDTO;
+import suharik.apps.universitymanagement.Entities.User;
 import suharik.apps.universitymanagement.Services.LessonService;
 
 @Controller
@@ -48,18 +51,24 @@ public class LessonController {
         }
     }
 
-    @PostMapping("admin/add/lesson/{lessonID}/student/{studentID}")
-    public ResponseEntity<?> addStudentToLesson(@PathVariable int lessonID, @PathVariable int studentID) {
+    @PostMapping("enrolment/add/lesson/{lessonID}")
+    public ResponseEntity<?> addStudentToLesson(@PathVariable int lessonID) {
         try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user  = (User) auth.getPrincipal();
+            int studentID = user.getId();
             lessonService.addLessonForStudent(lessonID, studentID);
             return ResponseEntity.ok("Lesson added successfully");
         }catch (EntityNotFoundException e){
             return ResponseEntity.notFound().build();
         }
     }
-    @DeleteMapping("admin/delete/lesson/{lessonID}/student/{studentID}")
-    public ResponseEntity<?> deleteStudentToLesson(@PathVariable int lessonID, @PathVariable int studentID) {
+    @DeleteMapping("enrolment/delete/lesson/{lessonID}")
+    public ResponseEntity<?> deleteStudentToLesson(@PathVariable int lessonID) {
         try {
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            User user  = (User) auth.getPrincipal();
+            int studentID = user.getId();
             lessonService.deleteLessonForStudent(lessonID, studentID);
             return ResponseEntity.ok("Lesson added successfully");
         }catch (EntityNotFoundException e){
