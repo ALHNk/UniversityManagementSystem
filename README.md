@@ -1,4 +1,6 @@
-This is the pure backend project done with Spring Boot 3 using Spring Security, JWT and Data JPA.
+The project is done by Alikhan Khamidulla, khamidulla.alikhan@gmail.com
+
+This is the pure backend project done with Spring Boot 3 using Spring Security, JWT and Data JPA, for database postgreSQL was used.
 The project is only backend, so for testing endpoints I use POSTMAN.
 The project is done in Intellij Idea, so I recommend you to use it. The application runs on the tomcat server included in Spring Boot.
 
