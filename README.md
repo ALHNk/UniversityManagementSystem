@@ -30,14 +30,15 @@ The application has many endpoints with different types of the access.
                                                                           }) the email, password, role fields are required.
         /auth/login used for login and requires only email and password : {"email": "ali@gmail.com","password": "qwerty",}, the login will return JWT token.               POST METHOD
 
+      PLEASE FILL ALL THE ROLES(ADMIN, TEACHER, STUDENT) WITH UPPER CASE
         NEXT is the /admin  endpoints. For this access have only users with role admin
-        http://localhost:8080/admin/add/student  is for creating new student (REQUIRES HEADERS Authorization bearer [JWT AUTHORIZATION TOKEN TAKEN FROM LOGIN], and JSON as like for registration          POST METHOD {
-                                                                                                                                                                                            "email": "baqli@gmail.com",
-                                                                                                                                                                                            "password": "qwerty",
-                                                                                                                                                                                            "firsName": "Alikhffan",
-                                                                                                                                                                                            "lastName": "Khamisecwdulla",
-                                                                                                                                                                                            "phone": "+7747212wcdxsa0506",
-                                                                                                                                                                                            "groupName": "IT-2303"}
+        http://localhost:8080/admin/add/student  is for creating new student (REQUIRES HEADERS Authorization bearer [JWT AUTHORIZATION TOKEN TAKEN FROM LOGIN], and JSON as like for registration    POST METHOD {
+                                                                                                                                                                                     "email": "baqli@gmail.com",
+                                                                                                                                                                                     "password": "qwerty",
+                                                                                                                                                                                     "firsName": "Alikhffan",
+                                                                                                                                                                                     "lastName": "Khamisecwdulla",
+                                                                                                                                                                                      "phone": "+7747212wcdxsa0506",
+                                                                                                                                                                                        "groupName": "IT-2303"}
         http://localhost:8080/admin/add/teacher   is also admin's endpoint just to create new teachers  as like students:      POST METHOD         {"email": "teacher@mail.kz",
                                                                                                                                                          "password": "teacher",
                                                                                                                                                          "firstName":"Mug",
@@ -84,5 +85,10 @@ The application has many endpoints with different types of the access.
     http://localhost:8080/lesson/{id}    is a get method endpoint  to get specific lesson. CAN BE ACCESSED BY ANY CLIENT
 
     http://localhost:8080/enrolment/add/lesson/{lessonID}   is an endpoint that can be accessed only by the STUDENT; it adds new lesson to the logged in STUDENT
-    http://localhost:8080/enrolment/delete/lesson/{lessonID}  is an endpoint that can be accessed only by the STUDENT; it deletes lesson from the logged in STUDENT.
+                                                            except url, you will also have to put Authorization Token.
+    http://localhost:8080/enrolment/delete/lesson/{lessonID}  is an endpoint that can be accessed only by the STUDENT; it deletes lesson from the logged in STUDENT
+                                                                 except url, you will also have to put Authorization Token.
+
+
+        ALL the IDs of teacher or lesson you can find with get methods that were show above.
         
